@@ -40,6 +40,28 @@ void CTreeBst::InsertKey(int Key)
 	}
 	
 }
+CNode* CTreeBst::Search(int Key)
+{
+	return Search(Key, m_Head);
+}
+CNode* CTreeBst::Search(int Key, CNode* node)
+{
+	if (node != nullptr)
+	{
+		if (Key != *node->Key)
+		{
+			if (Key < *node->Key)
+			{
+				node =  Search(Key, node->LeftChild);
+			}
+			else
+			{
+				node =  Search(Key, node->RightChild);
+			}
+		}
+	}
+	return node;
+}
 CTreeBst::~CTreeBst()
 {
 }

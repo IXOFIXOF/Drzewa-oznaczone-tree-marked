@@ -24,18 +24,30 @@ int main()
 	}
 	Option();
 	cout << "Wybierz rodzaj operacji: ";
-	cin >> n;
-	switch (n)
+	do
 	{
-	case 1:
-	{
-		oTree->InsertKey(4);
-		oTree->InsertKey(5);
-		oTree->InsertKey(10);
-		oTree->InsertKey(3);
-		oTree->InsertKey(6);
-	}
-	}
+		cin >> n;
+		switch (n)
+		{
+		case 1:
+		{
+			oTree->InsertKey(4);
+			oTree->InsertKey(5);
+			oTree->InsertKey(10);
+			oTree->InsertKey(3);
+			oTree->InsertKey(6);
+			break;
+		}
+		case 2:
+		{
+			oTree->operator<<(oTree->Search(10));
+			oTree->operator<<(oTree->Search(7));
+			oTree->operator<<(oTree->Search(3));
+			break;
+		}
+		}
+	} while ( n != 5 );
+	
 	return 0;
 }
 void Menu()
@@ -45,4 +57,5 @@ void Menu()
 void Option()
 {
 	cout << "1. Dodaj element: \n";
+	cout << "2. Wyszukaj element\n";
 }

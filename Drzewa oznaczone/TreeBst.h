@@ -7,8 +7,11 @@ public:
 	CTreeBst();
 	~CTreeBst();
 
-	CNode* InsertKey(int Key, CNode* node );
-	void InsertKey(int Key);
 
+	void InsertKey(int Key);
+	CNode* Search(int Key);
+private:
+	CNode* InsertKey(int Key, CNode* node);
+	CNode* Search(int Key, CNode* node);
 };
 

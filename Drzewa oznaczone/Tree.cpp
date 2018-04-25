@@ -17,3 +17,14 @@ CNode::CNode()
 	Parent = nullptr;
 	Key = new int;
 }
+void CTree::operator << ( CNode* node)
+{
+	if (node == nullptr)
+	{
+		cout << "Nie znaleziono klucza\n";
+	}
+	else
+	{
+		cout << *node->Key << endl;
+	}
+}
