@@ -62,6 +62,79 @@ CNode* CTreeBst::Search(int Key, CNode* node)
 	}
 	return node;
 }
+CNode* CTreeBst::Min(CNode* node)
+{
+	if (node->LeftChild == nullptr)
+	{
+		return node;
+	}
+	else
+	{
+		return Min( node->LeftChild );
+	}
+}
+CNode* CTreeBst::Min()
+{
+	return Min( m_Head );
+}
+CNode* CTreeBst::Max(CNode* node)
+{
+	if (node->RightChild == nullptr)
+	{
+		return node;
+	}
+	else
+	{
+		return Max(node->RightChild);
+	}
+}
+void CTreeBst::Remove(int Key)
+{
+	Remove(Key, m_Head);
+}
+void CTreeBst::Remove(int Key, CNode* node)
+{
+	CNode* toDelete = Search(Key, node);
+	CNode* toSwap = nullptr;
+	if (toDelete->LeftChild == nullptr && toDelete->RightChild == nullptr)
+	{
+		if (toDelete->Parent->LeftChild == toDelete)
+		{
+			toDelete->Parent->LeftChild = nullptr;
+		}
+		else if (toDelete->Parent->RightChild == toDelete)
+		{
+			toDelete->Parent->RightChild = nullptr;
+		}
+		toDelete = nullptr;
+		delete toDelete;
+	}
+	else if (toDelete->LeftChild != nullptr && toDelete->RightChild == nullptr)
+	{
+		toDelete->Parent->LeftChild = toDelete->LeftChild;
+		toDelete->LeftChild->Parent = toDelete->Parent;
+		toDelete = nullptr;
+		delete toDelete;
+	}
+	else if (toDelete->LeftChild == nullptr && toDelete->RightChild != nullptr)
+	{
+		toDelete->Parent->RightChild = toDelete->RightChild;
+		toDelete->RightChild->Parent = toDelete->Parent;
+		toDelete = nullptr;
+		delete toDelete;
+	}
+	else
+	{
+		toSwap = Min(toDelete->RightChild);
+
+
+	}
+
+}
+CNode* CTreeBst::Max()
+{
+	return Max(m_Head);
+}
 CTreeBst::~CTreeBst()
 {
 }

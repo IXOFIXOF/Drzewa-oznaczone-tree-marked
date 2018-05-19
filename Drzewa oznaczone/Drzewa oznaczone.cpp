@@ -4,14 +4,16 @@
 #include "stdafx.h"
 #include "Tree.h"
 #include "TreeBst.h"
-void Menu();
+void ListTree();
 void Option();
+void GetData(int& Key);
 int main()
 {
 	CTree* oTree = nullptr;
-	Menu();
+	ListTree();
 	cout << "Wybierz rodzaj drzewa: ";
 	int n;
+	int key = 0;
 	cin >> n;
 	switch (n)
 	{
@@ -22,35 +24,47 @@ int main()
 	default:
 		break;
 	}
-	Option();
-	cout << "Wybierz rodzaj operacji: ";
+	cout << "Wybierz rodzaj operacji: \n";
 	do
 	{
+		Option();
 		cin >> n;
 		switch (n)
 		{
 		case 1:
 		{
-			oTree->InsertKey(4);
-			oTree->InsertKey(5);
-			oTree->InsertKey(10);
-			oTree->InsertKey(3);
-			oTree->InsertKey(6);
+			GetData(key);
+			oTree->InsertKey(key);
 			break;
 		}
 		case 2:
 		{
-			oTree->operator<<(oTree->Search(10));
-			oTree->operator<<(oTree->Search(7));
-			oTree->operator<<(oTree->Search(3));
+			GetData(key);
+			oTree->operator<<(oTree->Search(key));
+			break;
+		}
+		case 3:
+		{
+			oTree->operator<<(oTree->Min());
+			break;
+		}
+		case 4:
+		{
+			oTree->operator<<(oTree->Max());
+			break;
+		}
+		case 5:
+		{
+			GetData(key);
+			oTree->Remove(key);
 			break;
 		}
 		}
-	} while ( n != 5 );
+	} while ( n != 6 );
 	
 	return 0;
 }
-void Menu()
+void ListTree()
 {
 	cout << "1. Drzewo BST\n";
 }
@@ -58,4 +72,14 @@ void Option()
 {
 	cout << "1. Dodaj element: \n";
 	cout << "2. Wyszukaj element\n";
+	cout << "3. Minimum\n";
+	cout << "4. Maximum\n";
+	cout << "5. Usun element\n";
+	cout << "6.Zakoncz prace\n";
+
+}
+void GetData(int& Key)
+{
+	cout << "Podaj liczbe: ";
+	cin >> Key;
 }
