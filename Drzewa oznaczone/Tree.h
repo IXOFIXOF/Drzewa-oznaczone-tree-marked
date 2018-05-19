@@ -8,7 +8,7 @@ public:
 	CNode* Parent;
 	CNode* LeftChild;
 	CNode* RightChild;
-	int* Key;
+	int Key;
 };
 
 class CTree

@@ -10,11 +10,11 @@ CNode* CTreeBst::InsertKey(int Key, CNode* node)
 	if (node == nullptr)
 	{
 		node = new CNode;
-		*node->Key = Key;
+		node->Key = Key;
 	}
 	else
 	{
-		if (Key < *node->Key)
+		if (Key < node->Key)
 		{
 			node->LeftChild = InsertKey(Key, node->LeftChild);
 			node->LeftChild->Parent = node;
@@ -32,7 +32,7 @@ void CTreeBst::InsertKey(int Key)
 	if (m_Head == nullptr)
 	{
 		m_Head = new CNode();
-		*m_Head->Key = Key;
+		m_Head->Key = Key;
 	}
 	else
 	{
@@ -48,9 +48,9 @@ CNode* CTreeBst::Search(int Key, CNode* node)
 {
 	if (node != nullptr)
 	{
-		if (Key != *node->Key)
+		if (Key != node->Key)
 		{
-			if (Key < *node->Key)
+			if (Key < node->Key)
 			{
 				node =  Search(Key, node->LeftChild);
 			}
@@ -98,16 +98,19 @@ void CTreeBst::Remove(int Key, CNode* node)
 	CNode* toSwap = nullptr;
 	if (toDelete->LeftChild == nullptr && toDelete->RightChild == nullptr)
 	{
-		if (toDelete->Parent->LeftChild == toDelete)
+		if (toDelete->Parent != nullptr)
 		{
-			toDelete->Parent->LeftChild = nullptr;
+			if (toDelete->Parent->LeftChild == toDelete)
+			{
+				toDelete->Parent->LeftChild = nullptr;
+			}
+			else if (toDelete->Parent->RightChild == toDelete)
+			{
+				toDelete->Parent->RightChild = nullptr;
+			}
 		}
-		else if (toDelete->Parent->RightChild == toDelete)
-		{
-			toDelete->Parent->RightChild = nullptr;
-		}
-		toDelete = nullptr;
 		delete toDelete;
+		toDelete = nullptr;
 	}
 	else if (toDelete->LeftChild != nullptr && toDelete->RightChild == nullptr)
 	{
@@ -126,8 +129,8 @@ void CTreeBst::Remove(int Key, CNode* node)
 	else
 	{
 		toSwap = Min(toDelete->RightChild);
-
-
+		toDelete->Key = toSwap->Key;
+		Remove(toSwap->Key, toSwap);
 	}
 
 }

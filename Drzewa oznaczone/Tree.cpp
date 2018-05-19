@@ -15,7 +15,7 @@ CNode::CNode()
 	LeftChild = nullptr;
 	RightChild = nullptr;
 	Parent = nullptr;
-	Key = new int;
+	Key = 0;
 }
 void CTree::operator << ( CNode* node)
 {
@@ -25,6 +25,6 @@ void CTree::operator << ( CNode* node)
 	}
 	else
 	{
-		cout << *node->Key << endl;
+		cout << node->Key << endl;
 	}
 }
