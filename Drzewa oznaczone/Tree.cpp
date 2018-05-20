@@ -28,3 +28,16 @@ void CTree::operator << ( CNode* node)
 		cout << node->Key << endl;
 	}
 }
+void CTree::PostOrder()
+{
+	PostOrder(m_Head);
+}
+void CTree::PostOrder(CNode* node)
+{
+	if (node != nullptr)
+	{
+		PostOrder(node->LeftChild);
+		PostOrder(node->RightChild);
+		cout << node->Key << endl;
+	}
+}

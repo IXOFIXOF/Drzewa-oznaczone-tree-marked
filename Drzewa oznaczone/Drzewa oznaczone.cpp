@@ -59,8 +59,13 @@ int main()
 			oTree->Remove(key);
 			break;
 		}
+		case 6:
+		{
+			oTree->PostOrder();
+			break;
 		}
-	} while ( n != 6 );
+		}
+	} while ( n != 7 );
 	
 	return 0;
 }
@@ -75,7 +80,8 @@ void Option()
 	cout << "3. Minimum\n";
 	cout << "4. Maximum\n";
 	cout << "5. Usun element\n";
-	cout << "6.Zakoncz prace\n";
+	cout << "6. PostOrder\n";
+	cout << "7. Zakoncz prace\n";
 
 }
 void GetData(int& Key)

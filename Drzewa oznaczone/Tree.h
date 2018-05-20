@@ -22,14 +22,15 @@ public:
 	virtual CNode* Min() = 0;
 	virtual CNode* Max() = 0;
 	virtual void  Remove(int Key) = 0;
+	virtual void PostOrder();
 	void operator << (CNode* node);
-
 protected:
 	virtual CNode* InsertKey(int Key, CNode* node) = 0;
 	virtual CNode* Search(int Key, CNode* node) = 0;
 	virtual CNode* Min(CNode * node) = 0;
 	virtual CNode* Max(CNode* node) = 0;
 	virtual void Remove(int Key, CNode* node) = 0;
+	virtual void PostOrder(CNode* node);
 	CNode* m_Head;
 };
 
